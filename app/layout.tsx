@@ -4,6 +4,7 @@ import "./globals.css";
 import { cn } from "@/lib/utils";
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { AppSidebar } from "@/components/app-sidebar";
+import { Separator } from "@/components/ui/separator";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
 
@@ -38,8 +39,12 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       <body className="min-h-full flex flex-col">
         <SidebarProvider>
           <AppSidebar />
-          <main className="flex-1 flex flex-col">
-            <SidebarTrigger />
+          <main className="flex-1 flex flex-col p-4">
+            <div className="mb-4 flex items-center gap-4">
+              <SidebarTrigger className="-ml-1" />
+              <Separator orientation="vertical" className="h-4 my-auto" />
+              <span className="text-sm text-muted-foreground">Dashboard</span>
+            </div>
             {children}
           </main>
         </SidebarProvider>
