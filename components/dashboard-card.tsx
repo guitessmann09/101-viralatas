@@ -16,11 +16,11 @@ export const DashboardCard = ({
       <CardContent>
         <div className="flex items-center gap-6">
           <div className="space-y-1.5">
-            <p className="text-xs font-medium text-muted-foreground uppercase">
+            <p className="text-xs font-semibold text-muted-foreground uppercase">
               {title}
             </p>
             <p className="text-5xl font-bold font-heading">{value}</p>
-            <p className="text-sm text-muted-foreground">{complementaryText}</p>
+            <p className="text-xs text-muted-foreground">{complementaryText}</p>
           </div>
         </div>
       </CardContent>
