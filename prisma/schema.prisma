@@ -1,0 +1,59 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../lib/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Usuario {
+  id        String   @id @default(uuid())
+  nome      String
+  email     String   @unique
+  senha     String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model PontoColeta {
+  id        String   @id @default(uuid())
+  nome      String
+  telefone  String?
+  endereco  String
+  numero    String?
+  bairro    String?
+  cidade    String
+  cep       String?
+  latitude  Float?
+  longitude Float?
+  status    String   @default("ATIVO")
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  coletas   Coleta[]
+}
+
+model Voluntario {
+  id        String   @id @default(uuid())
+  nome      String
+  telefone  String
+  email     String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  coletas   Coleta[]
+}
+
+model Coleta {
+  id              String      @id @default(uuid())
+  pontoColetaId   String
+  voluntarioId    String?
+  status          String      @default("DISPONIVEL")
+  dataSolicitacao DateTime    @default(now())
+  dataReserva     DateTime?
+  dataConclusao   DateTime?
+  createdAt       DateTime    @default(now())
+  updatedAt       DateTime    @updatedAt
+  pontoColeta     PontoColeta @relation(fields: [pontoColetaId], references: [id])
+  voluntario      Voluntario? @relation(fields: [voluntarioId], references: [id])
+}
