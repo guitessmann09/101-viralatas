@@ -2,15 +2,12 @@
 
 import dynamic from "next/dynamic";
 import { useEffect, useState } from "react";
-import type { PontoNoMapa } from "../../components/mapa-coletas";
+import type { PontoNoMapa } from "../../../components/mapa-coletas";
 
-const MapaColetas = dynamic(
-  () => import("../../components/mapa-coletas"),
-  {
-    ssr: false,
-    loading: () => <p>Carregando mapa...</p>,
-  }
-);
+const MapaColetas = dynamic(() => import("../../../components/mapa-coletas"), {
+  ssr: false,
+  loading: () => <p>Carregando mapa...</p>,
+});
 
 export default function PaginaMapa() {
   const [pontos, setPontos] = useState<PontoNoMapa[]>([]);
@@ -49,9 +46,7 @@ export default function PaginaMapa() {
   return (
     <main className="space-y-6 p-6">
       <div>
-        <h1 className="text-2xl font-bold">
-          Mapa de pontos de coleta
-        </h1>
+        <h1 className="text-2xl font-bold">Mapa de pontos de coleta</h1>
 
         <p className="mt-1 text-sm text-muted-foreground">
           Visualização dos locais cadastrados pela ONG.

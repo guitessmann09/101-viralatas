@@ -1,30 +1,23 @@
 import {
   Sidebar,
   SidebarContent,
-  SidebarFooter,
   SidebarGroup,
   SidebarHeader,
   SidebarMenu,
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
 
-import {
-  House,
-  MapIcon,
-  Users,
-  History,
-  ClipboardList,
-} from "lucide-react";
+import { ClipboardList, History, House, MapIcon, Users } from "lucide-react";
 
 import Image from "next/image";
 import Link from "next/link";
 
 export function AppSidebar() {
   return (
-    <Sidebar>
-      <SidebarHeader>
+    <Sidebar className="border-r border-border/80 bg-sidebar text-sidebar-foreground">
+      <SidebarHeader className="border-b border-sidebar-border/80 px-3 py-4">
         <SidebarMenu>
-          <SidebarMenuItem className="flex flex-col items-center justify-center gap-2 p-4">
+          <SidebarMenuItem className="flex flex-col items-center justify-center gap-2  p-4">
             <Image
               src="/logo101VL.png"
               alt="Logo101Viralatas"
@@ -32,72 +25,68 @@ export function AppSidebar() {
               height={120}
             />
 
-            <span className="truncate text-center text-xs">
+            <span className="text-center text-xs font-medium uppercase tracking-[0.2em] text-sidebar-foreground/70">
               Gestão de coletas
             </span>
           </SidebarMenuItem>
         </SidebarMenu>
       </SidebarHeader>
 
-      <SidebarContent>
+      <SidebarContent className="px-3 py-4">
         <SidebarGroup>
-          <SidebarMenu>
-            <SidebarMenuItem className="flex flex-col gap-2">
+          <SidebarMenu className="space-y-2">
+            <SidebarMenuItem>
               <Link
                 href="/"
-                className="flex items-center gap-3 rounded-lg p-3 transition-colors hover:bg-sidebar-accent"
+                className="flex items-center gap-3 rounded-xl p-3 text-sm font-medium text-sidebar-foreground transition-colors hover:bg-sidebar-accent hover:text-sidebar-accent-foreground"
               >
                 <House className="h-4 w-4" />
-                <span className="text-sm font-medium">
-                  Dashboard
-                </span>
+                Dashboard
               </Link>
+            </SidebarMenuItem>
 
+            <SidebarMenuItem>
               <Link
                 href="/pontos"
-                className="flex items-center gap-3 rounded-lg p-3 transition-colors hover:bg-sidebar-accent"
+                className="flex items-center gap-3 rounded-xl p-3 text-sm font-medium text-sidebar-foreground transition-colors hover:bg-sidebar-accent hover:text-sidebar-accent-foreground"
               >
                 <MapIcon className="h-4 w-4" />
-                <span className="text-sm font-medium">
-                  Pontos de coleta
-                </span>
+                Pontos de coleta
               </Link>
+            </SidebarMenuItem>
 
+            <SidebarMenuItem>
               <Link
                 href="/voluntarios"
-                className="flex items-center gap-3 rounded-lg p-3 transition-colors hover:bg-sidebar-accent"
+                className="flex items-center gap-3 rounded-xl p-3 text-sm font-medium text-sidebar-foreground transition-colors hover:bg-sidebar-accent hover:text-sidebar-accent-foreground"
               >
                 <Users className="h-4 w-4" />
-                <span className="text-sm font-medium">
-                  Voluntários
-                </span>
+                Voluntários
               </Link>
+            </SidebarMenuItem>
 
+            <SidebarMenuItem>
               <Link
                 href="/coletas"
-                className="flex items-center gap-3 rounded-lg p-3 transition-colors hover:bg-sidebar-accent"
+                className="flex items-center gap-3 rounded-xl p-3 text-sm font-medium text-sidebar-foreground transition-colors hover:bg-sidebar-accent hover:text-sidebar-accent-foreground"
               >
                 <ClipboardList className="h-4 w-4" />
-                <span className="text-sm font-medium">
-                  Coletas
-                </span>
+                Coletas
               </Link>
+            </SidebarMenuItem>
 
+            <SidebarMenuItem>
               <Link
                 href="/historico"
-                className="flex items-center gap-3 rounded-lg p-3 transition-colors hover:bg-sidebar-accent"
+                className="flex items-center gap-3 rounded-xl p-3 text-sm font-medium text-sidebar-foreground transition-colors hover:bg-sidebar-accent hover:text-sidebar-accent-foreground"
               >
                 <History className="h-4 w-4" />
-                <span className="text-sm font-medium">
-                  Histórico de coletas
-                </span>
+                Histórico de coletas
               </Link>
             </SidebarMenuItem>
           </SidebarMenu>
         </SidebarGroup>
       </SidebarContent>
-
-      <SidebarFooter />
     </Sidebar>
   );
 }
