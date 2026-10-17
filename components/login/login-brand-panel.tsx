@@ -2,8 +2,8 @@ import { HeartHandshake } from "lucide-react";
 
 export function LoginBrandPanel() {
   return (
-    <section className="relative flex flex-col justify-between overflow-hidden border-b border-border/80 bg-gradient-to-br from-primary/20 via-background to-secondary/60 p-8 lg:border-b-0 lg:border-r">
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,_rgba(250,204,21,0.2),transparent_30%)]" />
+    <section className="relative flex flex-col justify-between overflow-hidden border-b border-border/80 bg-linear-to-br from-primary/20 via-background to-secondary/60 p-8 lg:border-b-0 lg:border-r">
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(250,204,21,0.2),transparent_30%)]" />
 
       <div className="relative space-y-6">
         <div className="inline-flex items-center gap-2 rounded-full border border-border/70 bg-background/60 px-3 py-1.5 text-xs font-medium text-foreground/80">
@@ -16,7 +16,8 @@ export function LoginBrandPanel() {
             Faça o bem com mais organização.
           </h1>
           <p className="max-w-md text-base text-muted-foreground">
-            Conecte pontos de coleta, voluntários e ações de resgate em uma única operação acolhedora e eficiente.
+            Conecte pontos de coleta, voluntários e ações de resgate em uma
+            única operação acolhedora e eficiente.
           </p>
         </div>
       </div>
@@ -32,7 +33,9 @@ export function LoginBrandPanel() {
         </div>
         <div className="rounded-2xl border border-border/80 bg-background/60 p-4">
           <p className="text-2xl font-bold text-foreground">89%</p>
-          <p className="mt-1 text-xs text-muted-foreground">coletas concluídas</p>
+          <p className="mt-1 text-xs text-muted-foreground">
+            coletas concluídas
+          </p>
         </div>
       </div>
     </section>
