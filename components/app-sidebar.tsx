@@ -1,22 +1,13 @@
 import {
   Sidebar,
   SidebarContent,
-  SidebarFooter,
   SidebarGroup,
   SidebarHeader,
   SidebarMenu,
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
 
-import {
-  ChevronRight,
-  ClipboardList,
-  History,
-  House,
-  LogIn,
-  MapIcon,
-  Users,
-} from "lucide-react";
+import { ClipboardList, History, House, MapIcon, Users } from "lucide-react";
 
 import Image from "next/image";
 import Link from "next/link";
@@ -96,19 +87,6 @@ export function AppSidebar() {
           </SidebarMenu>
         </SidebarGroup>
       </SidebarContent>
-
-      <SidebarFooter className="border-t border-sidebar-border/80 p-3">
-        <Link
-          href="/login"
-          className="flex items-center justify-between gap-2 rounded-xl bg-sidebar-accent px-3 py-2 text-sm font-medium text-sidebar-accent-foreground transition-colors hover:brightness-110"
-        >
-          <span className="flex items-center gap-2">
-            <LogIn className="h-4 w-4" />
-            Entrar
-          </span>
-          <ChevronRight className="h-4 w-4" />
-        </Link>
-      </SidebarFooter>
     </Sidebar>
   );
 }
