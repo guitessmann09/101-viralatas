@@ -16,7 +16,7 @@ export async function POST(
       );
     }
 
-    const voluntario = await prisma.voluntario.findUnique({
+    const voluntario = await prisma.user.findUnique({
       where: { id: body.voluntarioId },
     });
 

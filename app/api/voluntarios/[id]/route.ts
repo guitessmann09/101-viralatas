@@ -4,19 +4,19 @@ import { prisma } from "@/lib/prisma";
 // GET: consultar um voluntário pelo ID
 export async function GET(
   request: Request,
-  { params }: { params: Promise<{ id: string }> }
+  { params }: { params: Promise<{ id: string }> },
 ) {
   try {
     const { id } = await params;
 
-    const voluntario = await prisma.voluntario.findUnique({
+    const voluntario = await prisma.user.findUnique({
       where: { id },
     });
 
     if (!voluntario) {
       return NextResponse.json(
         { erro: "Voluntário não encontrado." },
-        { status: 404 }
+        { status: 404 },
       );
     }
 
@@ -26,7 +26,7 @@ export async function GET(
 
     return NextResponse.json(
       { erro: "Erro ao buscar voluntário." },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }
@@ -34,7 +34,7 @@ export async function GET(
 // PUT: atualizar um voluntário
 export async function PUT(
   request: Request,
-  { params }: { params: Promise<{ id: string }> }
+  { params }: { params: Promise<{ id: string }> },
 ) {
   try {
     const { id } = await params;
@@ -43,22 +43,22 @@ export async function PUT(
     if (!body.nome?.trim() || !body.telefone?.trim()) {
       return NextResponse.json(
         { erro: "Nome e telefone são obrigatórios." },
-        { status: 400 }
+        { status: 400 },
       );
     }
 
-    const existente = await prisma.voluntario.findUnique({
+    const existente = await prisma.user.findUnique({
       where: { id },
     });
 
     if (!existente) {
       return NextResponse.json(
         { erro: "Voluntário não encontrado." },
-        { status: 404 }
+        { status: 404 },
       );
     }
 
-    const voluntario = await prisma.voluntario.update({
+    const voluntario = await prisma.user.update({
       where: { id },
       data: {
         nome: body.nome.trim(),
@@ -73,7 +73,7 @@ export async function PUT(
 
     return NextResponse.json(
       { erro: "Erro ao atualizar voluntário." },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }
@@ -81,23 +81,23 @@ export async function PUT(
 // DELETE: excluir um voluntário
 export async function DELETE(
   request: Request,
-  { params }: { params: Promise<{ id: string }> }
+  { params }: { params: Promise<{ id: string }> },
 ) {
   try {
     const { id } = await params;
 
-    const existente = await prisma.voluntario.findUnique({
+    const existente = await prisma.user.findUnique({
       where: { id },
     });
 
     if (!existente) {
       return NextResponse.json(
         { erro: "Voluntário não encontrado." },
-        { status: 404 }
+        { status: 404 },
       );
     }
 
-    await prisma.voluntario.delete({
+    await prisma.user.delete({
       where: { id },
     });
 
@@ -109,7 +109,7 @@ export async function DELETE(
 
     return NextResponse.json(
       { erro: "Erro ao excluir voluntário." },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }

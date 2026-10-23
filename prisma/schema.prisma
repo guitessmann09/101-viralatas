@@ -1,3 +1,4 @@
+
 generator client {
   provider = "prisma-client"
   output   = "../lib/generated/prisma"
@@ -5,15 +6,6 @@ generator client {
 
 datasource db {
   provider = "postgresql"
-}
-
-model Usuario {
-  id        String   @id @default(uuid())
-  nome      String
-  email     String   @unique
-  senha     String
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
 }
 
 model PontoColeta {
@@ -33,16 +25,6 @@ model PontoColeta {
   coletas   Coleta[]
 }
 
-model Voluntario {
-  id        String   @id @default(uuid())
-  nome      String
-  telefone  String
-  email     String?
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  coletas   Coleta[]
-}
-
 model Coleta {
   id              String      @id @default(uuid())
   pontoColetaId   String
@@ -54,5 +36,69 @@ model Coleta {
   createdAt       DateTime    @default(now())
   updatedAt       DateTime    @updatedAt
   pontoColeta     PontoColeta @relation(fields: [pontoColetaId], references: [id])
-  voluntario      Voluntario? @relation(fields: [voluntarioId], references: [id])
+  voluntario      User? @relation(fields: [voluntarioId], references: [id])
+}
+
+model User {
+  id            String    @id
+  name          String
+  email         String
+  emailVerified Boolean   @default(false)
+  image         String?
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  sessions      Session[]
+  accounts      Account[]
+  coletas   Coleta[]
+
+  @@unique([email])
+  @@map("user")
+}
+
+model Session {
+  id        String   @id
+  expiresAt DateTime
+  token     String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  ipAddress String?
+  userAgent String?
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([token])
+  @@index([userId])
+  @@map("session")
+}
+
+model Account {
+  id                    String    @id
+  accountId             String
+  providerId            String
+  userId                String
+  user                  User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  accessToken           String?
+  refreshToken          String?
+  idToken               String?
+  accessTokenExpiresAt  DateTime?
+  refreshTokenExpiresAt DateTime?
+  scope                 String?
+  password              String?
+  createdAt             DateTime  @default(now())
+  updatedAt             DateTime  @updatedAt
+
+  @@index([userId])
+  @@map("account")
+}
+
+model Verification {
+  id         String   @id
+  identifier String
+  value      String
+  expiresAt  DateTime
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  @@index([identifier])
+  @@map("verification")
 }
